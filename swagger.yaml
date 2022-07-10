@@ -51,9 +51,15 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/users'
+      security: []
       responses:
         200:
-          description: User object
+          description: User object. The session ID is returned in a cookie named `Authorization`. You need to include this cookie in subsequent requests.
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+                example: Authorization=abcde12345; Path=/; HttpOnly
           schema:
             $ref: '#/definitions/users'
         400:
@@ -86,6 +92,8 @@ paths:
       tags:
       - users
       summary: Find All Users
+      security:
+        - cookieAuth: []
       responses:
         200:
           description: 'OK'
@@ -104,6 +112,8 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/users'
+      security:
+        - cookieAuth: []
       responses:
         201:
           description: 'Created'
@@ -126,6 +136,8 @@ paths:
         description: User Id
         required: true
         type: integer
+      security:
+        - cookieAuth: []
       responses:
         200:
           description: 'OK'
@@ -151,6 +163,8 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/users'
+      security:
+        - cookieAuth: []
       responses:
         200:
           description: 'OK'
@@ -172,6 +186,8 @@ paths:
         description: user Id
         required: true
         type: integer
+      security:
+        - cookieAuth: []
       responses:
         200:
           description: 'OK'
@@ -194,6 +210,13 @@ definitions:
       password:
         type: string
         description: user Password
+
+securityDefinitions:
+  APIKeyHeader:
+    type: apiKey
+    in: cookie
+    name: Authorization
+    description: "Authorization JWT token"
 
 schemes:
   - https

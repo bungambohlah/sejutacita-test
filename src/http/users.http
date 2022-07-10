@@ -4,15 +4,18 @@
 ###
 # Find All Users
 GET {{ baseURL }}/users
+Cookie: Authorization=admin_user_token
 
 ###
 # Find User By Id
 GET {{ baseURL }}/users/1
+Cookie: Authorization=admin_user_token
 
 ###
 # Create User
 POST {{ baseURL }}/users
 Content-Type: application/json
+Cookie: Authorization=admin_only_token
 
 {
     "username": "username",
@@ -23,6 +26,7 @@ Content-Type: application/json
 # Modify User By Id
 PUT {{ baseURL }}/users/1
 Content-Type: application/json
+Cookie: Authorization=admin_only_token
 
 {
     "username": "username",
@@ -32,3 +36,4 @@ Content-Type: application/json
 ###
 # Delete User By Id
 DELETE {{ baseURL }}/users/1
+Cookie: Authorization=admin_only_token
