@@ -7,7 +7,7 @@ const migrateDir = NODE_ENV === 'production' ? 'dist/databases/migrations' : 'sr
 const seedDir = NODE_ENV === 'production' ? 'dist/databases/seeds' : 'src/databases/seeds';
 
 export = {
-  client: 'mysql',
+  client: 'pg',
   connection: {
     charset: 'utf8',
     timezone: 'UTC',

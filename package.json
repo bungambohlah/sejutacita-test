@@ -1,7 +1,7 @@
 {
   "name": "sejutacita-test",
   "version": "0.0.0",
-  "description": "TypeScript + Knex + MySQL + Express API Server",
+  "description": "TypeScript + Knex + Postgresql + Express API Server",
   "author": "",
   "license": "ISC",
   "scripts": {
@@ -39,10 +39,10 @@
     "helmet": "^4.6.0",
     "hpp": "^0.2.3",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^0.21.19",
+    "knex": "^2.1.0",
     "morgan": "^1.10.0",
-    "mysql": "^2.18.1",
-    "objection": "^2.2.15",
+    "objection": "^3.0.1",
+    "pg": "^8.7.3",
     "swagger-jsdoc": "^6.0.0",
     "swagger-ui-express": "^4.1.6",
     "winston": "^3.3.3",
