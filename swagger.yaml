@@ -1,8 +1,85 @@
 tags:
 - name: users
   description: users API
+- name: user_auth
+  description: user authentications API
 
 paths:
+# [POST] User sign up
+  /signup:
+    post:
+      tags:
+      - user_auth
+      summary: Signup a user
+      description: Signup a user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        in: body
+        description: User object
+        required: true
+        schema:
+          $ref: '#/definitions/users'
+      responses:
+        200:
+          description: User object
+          schema:
+            $ref: '#/definitions/users'
+        400:
+          description: Bad request
+        500:
+          description: Internal server error
+
+# [POST] User login
+  /login:
+    post:
+      tags:
+      - user_auth
+      summary: Login a authentication
+      description: Login a authentication
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        in: body
+        description: User object
+        required: true
+        schema:
+          $ref: '#/definitions/users'
+      responses:
+        200:
+          description: User object
+          schema:
+            $ref: '#/definitions/users'
+        400:
+          description: Bad request
+        500:
+          description: Internal server error
+
+# [POST] User logout
+  /logout:
+    post:
+      tags:
+      - user_auth
+      summary: Logout a authenticated user
+      description: Logout a authenticated user
+      produces:
+      - application/json
+      responses:
+        200:
+          description: User object
+          schema:
+            $ref: '#/definitions/users'
+        400:
+          description: Bad request
+        500:
+          description: Internal server error
+
 # [GET] users
   /users:
     get:
@@ -108,16 +185,16 @@ definitions:
   users:
     type: object
     required:
-        - email
+        - username
         - password
     properties:
-      email:
+      username:
         type: string
-        description: user Email
+        description: user Username
       password:
         type: string
         description: user Password
 
 schemes:
- - https
- - http
+  - https
+  - http
