@@ -3,7 +3,7 @@ import { User } from '@interfaces/users.interface';
 
 export class Users extends Model implements User {
   id!: number;
-  email!: string;
+  username!: string;
   password!: string;
 
   static tableName = 'users'; // database table name

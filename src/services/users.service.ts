@@ -21,8 +21,8 @@ class UserService {
   public async createUser(userData: CreateUserDto): Promise<User> {
     if (isEmpty(userData)) throw new HttpException(400, "You're not userData");
 
-    const findUser: User = await Users.query().select().from('users').where('email', '=', userData.email).first();
-    if (findUser) throw new HttpException(409, `You're email ${userData.email} already exists`);
+    const findUser: User = await Users.query().select().from('users').where('username', '=', userData.username).first();
+    if (findUser) throw new HttpException(409, `You're username ${userData.username} already exists`);
 
     const hashedPassword = await hash(userData.password, 10);
     const createUserData: User = await Users.query()
@@ -54,6 +54,10 @@ class UserService {
 
     await Users.query().delete().where('id', '=', userId).into('users');
     return findUser;
+  }
+
+  public async deleteAllUsers(): Promise<number> {
+    return await Users.query().delete();
   }
 }
 
