@@ -3,6 +3,7 @@ import { CreateUserDto } from '@dtos/users.dto';
 import { RequestWithUser } from '@interfaces/auth.interface';
 import { User } from '@interfaces/users.interface';
 import AuthService from '@services/auth.service';
+import { Roles } from '@/models/roles.model';
 
 class AuthController {
   public authService = new AuthService();
@@ -10,7 +11,10 @@ class AuthController {
   public signUp = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const userData: CreateUserDto = req.body;
-      const signUpUserData: User = await this.authService.signup(userData);
+      const userRole = await Roles.query().where('name', 'user').first();
+      const user: Omit<User, 'id'> = userData;
+      user.role_id = userRole.id;
+      const signUpUserData: User = await this.authService.signup(user);
 
       res.status(201).json({ data: signUpUserData, message: 'signup' });
     } catch (error) {

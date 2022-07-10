@@ -5,6 +5,8 @@ import { HttpException } from '@exceptions/HttpException';
 import { DataStoredInToken, RequestWithUser } from '@interfaces/auth.interface';
 import { User } from '@interfaces/users.interface';
 import { Users } from '@models/users.model';
+import { Role } from '@/interfaces/roles.interface';
+import { Roles } from '@/models/roles.model';
 
 const authMiddleware = async (req: RequestWithUser, res: Response, next: NextFunction) => {
   try {
@@ -15,9 +17,10 @@ const authMiddleware = async (req: RequestWithUser, res: Response, next: NextFun
       const verificationResponse = (await verify(Authorization, secretKey)) as DataStoredInToken;
       const userId = verificationResponse.id;
       const findUser: User = await Users.query().findById(userId);
+      const findUserRole: Role = await Roles.query().findById(findUser.role_id);
 
-      if (findUser) {
-        req.user = findUser;
+      if (findUser && findUserRole) {
+        req.user = { ...findUser, role: findUserRole };
         next();
       } else {
         next(new HttpException(401, 'Wrong authentication token'));

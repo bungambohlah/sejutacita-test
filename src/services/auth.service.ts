@@ -9,7 +9,7 @@ import { Users } from '@models/users.model';
 import { isEmpty } from '@utils/util';
 
 class AuthService {
-  public async signup(userData: CreateUserDto): Promise<User> {
+  public async signup(userData: Omit<User, 'id'>): Promise<User> {
     if (isEmpty(userData)) throw new HttpException(400, "You're not userData");
 
     const findUser: Users = await Users.query().select().from('users').where('username', '=', userData.username).first();
