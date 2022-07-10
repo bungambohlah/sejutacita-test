@@ -63,7 +63,7 @@ class UsersController {
 
   public deleteAllUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const deletedCount = await this.userService.deleteAllUser();
+      const deletedCount = await this.userService.deleteAllUsers();
 
       res.status(200).json({ data: `${deletedCount} already deleted`, message: 'deleted' });
     } catch (error) {
