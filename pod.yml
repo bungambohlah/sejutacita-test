@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-sejutacita
+spec:
+  selector:
+    matchLabels:
+      run: my-sejutacita
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: my-sejutacita
+    spec:
+      containers:
+      - name: my-sejutacita
+        image: bungambohlah/sejutacita:latest
+        ports:
+        - containerPort: 3000

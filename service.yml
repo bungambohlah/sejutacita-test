@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-sejutacita
+  labels:
+    run: my-sejutacita
+spec:
+  type: NodePort
+  ports:
+  - port: 3001
+    targetPort: 3000
+    protocol: TCP
+    name: http
+  selector:
+    run: my-sejutacita
