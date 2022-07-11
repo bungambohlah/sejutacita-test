@@ -14,7 +14,7 @@ Just visit at [sejutacita.id](https://sejutacita.id/)
     - [How to setup and run tests](#how-to-setup-and-run-tests)
     - [How to deploy on production environment](#how-to-deploy-on-production-environment)
     - [How to deploy production with kubernetes (kinD)](#how-to-deploy-production-with-kubernetes-kind)
-    - [Screenshot Kubernetes with KinD](#screenshot-kubernetes-with-kind)
+    - [Screenshot Kubernetes Configuration (this example with Docker Desktop)](#screenshot-kubernetes-configuration-this-example-with-docker-desktop)
   - [Credentials](#credentials)
   - [Link Deployed to Production with Railway Cloud Platform](#link-deployed-to-production-with-railway-cloud-platform)
   - [API Docs (Swagger)](#api-docs-swagger)
@@ -76,7 +76,7 @@ Just visit at [sejutacita.id](https://sejutacita.id/)
 6. check all the pod and service with `kubectl get all` and make sure status is `Running`
 7. Access your project with port from kind cluster master port (example is 30000). Then run with [localhost:30000](http://localhost:30000/)
 
-### Screenshot Kubernetes with KinD
+### Screenshot Kubernetes Configuration (this example with Docker Desktop)
 
 Apply pod and service with `kubectl apply -f pod.yml` and `kubectl apply -f service.yml`
 
