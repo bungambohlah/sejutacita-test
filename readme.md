@@ -13,7 +13,7 @@ Just visit at [sejutacita.id](https://sejutacita.id/)
     - [How to run on local environment](#how-to-run-on-local-environment)
     - [How to setup and run tests](#how-to-setup-and-run-tests)
     - [How to deploy on production environment](#how-to-deploy-on-production-environment)
-    - [How to deploy production with kubernetes (kinD)](#how-to-deploy-production-with-kubernetes-kind)
+    - [How to deploy production with kubernetes](#how-to-deploy-production-with-kubernetes)
     - [Screenshot Kubernetes Configuration (this example with Docker Desktop)](#screenshot-kubernetes-configuration-this-example-with-docker-desktop)
   - [Credentials](#credentials)
   - [Link Deployed to Production with Railway Cloud Platform](#link-deployed-to-production-with-railway-cloud-platform)
@@ -62,7 +62,7 @@ Just visit at [sejutacita.id](https://sejutacita.id/)
 2. Fill the local environment variables with the correct values
 3. Run and deploy with current exist Dockerfile and Docker Compose file (for test you can use Railway)
 
-### How to deploy production with kubernetes (kinD)
+### How to deploy production with kubernetes
 
 1. First of all, copy the `example` file to .env.production.local file
 2. Use Docker Desktop Kubernetes or you can use kinD to run the cluster
