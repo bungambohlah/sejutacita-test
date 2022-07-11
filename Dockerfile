@@ -1,3 +1,9 @@
+ARG DB_DATABASE
+ARG DB_HOST
+ARG DB_PASSWORD
+ARG DB_PORT
+ARG DB_USER
+
 # Common build stage
 FROM node:16.16.0-alpine3.16 as common-build-stage
 
