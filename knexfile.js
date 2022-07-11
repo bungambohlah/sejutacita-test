@@ -6,7 +6,7 @@ const { NODE_ENV, DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE } = proces
 const migrateDir = NODE_ENV === 'production' ? 'dist/databases/migrations' : 'src/databases/migrations';
 const seedDir = NODE_ENV === 'production' ? 'dist/databases/seeds' : 'src/databases/seeds';
 
-export = {
+module.exports = {
   client: 'pg',
   connection: {
     charset: 'utf8',
@@ -15,7 +15,7 @@ export = {
     port: DB_PORT,
     user: DB_USER,
     password: DB_PASSWORD,
-    database: DB_DATABASE
+    database: DB_DATABASE,
   },
   migrations: {
     directory: migrateDir,
