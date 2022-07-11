@@ -22,6 +22,6 @@ ENV NODE_ENV production
 
 RUN npm run build
 
-RUN npm run migrate:prod
+RUN DB_DATABASE=DB_DATABASE DB_HOST=DB_HOST DB_PASSWORD=DB_PASSWORD DB_PORT=DB_PORT DB_USER=DB_USER npm run migrate:prod
 
 CMD ["npm", "run", "start"]
