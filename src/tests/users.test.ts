@@ -3,10 +3,28 @@ import App from '@/app';
 import { CreateUserDto } from '@dtos/users.dto';
 import UserRoute from '@routes/users.route';
 import UserService from '@/services/users.service';
+import { Roles } from '@/models/roles.model';
+import { Users } from '@/models/users.model';
+import { hash } from 'bcrypt';
+import AuthRoute from '@/routes/auth.route';
+import { User } from '@/interfaces/users.interface';
 
 const usersRoute = new UserRoute();
-const app = new App([usersRoute]);
+const authRoute = new AuthRoute();
+const app = new App([authRoute, usersRoute]);
 const userAgent = request.agent(app.getServer());
+
+beforeAll(async () => {
+  const pass = 'password';
+  const hashedAdminPass = await hash(pass, 10);
+  const adminRole = await Roles.query().findOne({ name: 'admin' });
+  await Users.query().insert({ username: 'admin', password: hashedAdminPass, role_id: adminRole.id });
+  const userData: CreateUserDto = {
+    username: 'admin',
+    password: pass,
+  };
+  await userAgent.post('/login').send(userData);
+});
 
 afterAll(async () => {
   await new Promise<void>(resolve => setTimeout(() => resolve(), 500));
@@ -16,7 +34,10 @@ afterAll(async () => {
 describe('Testing Users', () => {
   describe('[GET] /users', () => {
     it('response statusCode 200 / findAll', async () => {
-      await new UserService().createUser({ username: 'username_findAll', password: 'q1w2e3r4' });
+      const pass = 'q1w2e3r4';
+      const hashedAdminPass = await hash(pass, 10);
+      const adminRole = await Roles.query().findOne({ name: 'user' });
+      await Users.query().insert({ username: 'username_findAll', password: hashedAdminPass, role_id: adminRole.id });
 
       return userAgent.get(`${usersRoute.path}`).expect(200);
     });
@@ -24,7 +45,13 @@ describe('Testing Users', () => {
 
   describe('[GET] /users/:id', () => {
     it('response statusCode 200 / findOne', async () => {
-      const user = await new UserService().createUser({ username: 'username_findOne', password: 'q1w2e3r4' });
+      const pass = 'q1w2e3r4';
+      const hashedAdminPass = await hash(pass, 10);
+      const adminRole = await Roles.query().findOne({ name: 'user' });
+      const user: User = await Users.query()
+        .insert({ username: 'username_findOne', password: hashedAdminPass, role_id: adminRole.id })
+        .returning('*')
+        .first();
       const userId = user.id;
 
       return userAgent.get(`${usersRoute.path}/${userId}`).expect(200);
