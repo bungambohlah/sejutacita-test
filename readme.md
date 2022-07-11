@@ -80,21 +80,19 @@ Just visit at [sejutacita.id](https://sejutacita.id/)
 
 Apply pod and service with `kubectl apply -f pod.yml` and `kubectl apply -f service.yml`
 
-[apply](https://raw.githubusercontent.com/bungambohlah/sejutacita-test/master/screenshots/apply.png)
+![apply](https://raw.githubusercontent.com/bungambohlah/sejutacita-test/master/screenshots/apply.png)
 
 Kube ctl get all pods & services
 
-[kubectl_get_all](https://raw.githubusercontent.com/bungambohlah/sejutacita-test/master/screenshots/kubectl_get_all.png)
-
-[access_pod_1](https://raw.githubusercontent.com/bungambohlah/sejutacita-test/master/screenshots/access_pod_1.png)
+![kubectl_get_all](https://raw.githubusercontent.com/bungambohlah/sejutacita-test/master/screenshots/kubectl_get_all.png)
 
 Access the project at index API
 
-[access_pod_1](https://raw.githubusercontent.com/bungambohlah/sejutacita-test/master/screenshots/access_pod_1.png)
+![access_pod_1](https://raw.githubusercontent.com/bungambohlah/sejutacita-test/master/screenshots/access_pod_1.png)
 
 Access the project at Swagger API Docs Page
 
-[access_pod_2](https://raw.githubusercontent.com/bungambohlah/sejutacita-test/master/screenshots/access_pod_2.png)
+![access_pod_2](https://raw.githubusercontent.com/bungambohlah/sejutacita-test/master/screenshots/access_pod_2.png)
 
 ## Credentials
 
