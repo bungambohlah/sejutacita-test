@@ -13,6 +13,8 @@ Just visit at [sejutacita.id](https://sejutacita.id/)
     - [How to run on local environment](#how-to-run-on-local-environment)
     - [How to setup and run tests](#how-to-setup-and-run-tests)
     - [How to deploy on production environment](#how-to-deploy-on-production-environment)
+    - [How to deploy production with kubernetes (kinD)](#how-to-deploy-production-with-kubernetes-kind)
+    - [Screenshot Kubernetes with KinD](#screenshot-kubernetes-with-kind)
   - [Credentials](#credentials)
   - [Link Deployed to Production with Railway Cloud Platform](#link-deployed-to-production-with-railway-cloud-platform)
   - [API Docs (Swagger)](#api-docs-swagger)
@@ -59,6 +61,40 @@ Just visit at [sejutacita.id](https://sejutacita.id/)
 1. First of all, copy the `example` file to .env.production.local file
 2. Fill the local environment variables with the correct values
 3. Run and deploy with current exist Dockerfile and Docker Compose file (for test you can use Railway)
+
+### How to deploy production with kubernetes (kinD)
+
+1. First of all, copy the `example` file to .env.production.local file
+2. Use Docker Desktop Kubernetes or you can use kinD to run the cluster
+   - [Docker Desktop Kubernetes](https://docs.docker.com/desktop/kubernetes/)
+   - [KinD](https://kind.sigs.k8s.io/)
+     - create a cluster with `kind create cluster --file cluster-config.yml`. The default cluster name is `kind`
+3. build your docker image with `docker image build -t YOUR_DOCKERHUB_USERNAME/sejutacita:latest .`
+   - or use my image at my docker repo [here](https://hub.docker.com/repository/docker/bungambohlah/sejutacita)
+4. create a deployment or pod with `kubectl apply -f pod.yml`
+5. create a service with `kubectl apply -f service.yml`
+6. check all the pod and service with `kubectl get all` and make sure status is `Running`
+7. Access your project with port from kind cluster master port (example is 30000). Then run with [localhost:30000](http://localhost:30000/)
+
+### Screenshot Kubernetes with KinD
+
+Apply pod and service with `kubectl apply -f pod.yml` and `kubectl apply -f service.yml`
+
+[apply](https://raw.githubusercontent.com/bungambohlah/sejutacita-test/master/screenshots/apply.png)
+
+Kube ctl get all pods & services
+
+[kubectl_get_all](https://raw.githubusercontent.com/bungambohlah/sejutacita-test/master/screenshots/kubectl_get_all.png)
+
+[access_pod_1](https://raw.githubusercontent.com/bungambohlah/sejutacita-test/master/screenshots/access_pod_1.png)
+
+Access the project at index API
+
+[access_pod_1](https://raw.githubusercontent.com/bungambohlah/sejutacita-test/master/screenshots/access_pod_1.png)
+
+Access the project at Swagger API Docs Page
+
+[access_pod_2](https://raw.githubusercontent.com/bungambohlah/sejutacita-test/master/screenshots/access_pod_2.png)
 
 ## Credentials
 
