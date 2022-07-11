@@ -6,6 +6,7 @@ export class Users extends Model implements User {
   id!: number;
   username!: string;
   password!: string;
+  role_id?: number;
 
   static tableName = 'users'; // database table name
   static idColumn = 'id'; // id column name
